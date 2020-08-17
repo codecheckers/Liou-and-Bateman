@@ -1,0 +1,42 @@
+---
+version: https://codecheck.org.uk/spec/config/1.0
+
+paper:
+  title: >
+    A model for focal seizure onset, propagation, evolution, and progression
+  authors:
+    - name: Jyun-you Liou
+      ORCID: https://orcid.org/0000-0003-4851-3676
+    - name: Elliot H Smith
+    - name: Lisa M Bateman
+  reference: >
+    eLife 2020;9:e50927
+    https://elifesciences.org/articles/50927
+
+manifest:
+  - file: codecheck/figures/Fig1_Model.png
+    comment: Snapshot of model for manuscript Figure 1
+  - file: codecheck/figures/Fig5_Model.png
+    comment: Snapshot of model for manuscript Figure 5
+  - file: codecheck/figures/Figure1.png
+    comment: Manuscript Figure 1C
+  - file: codecheck/figures/Figure2.png
+    comment: Manuscript Figure 2A, 2B and 2C
+  - file: codecheck/figures/Figure6.png
+    comment: Manuscript Figure 6A
+  - file: codecheck/figures/Figure7.png
+    comment: Manuscript Figure 7A and 7B
+
+codechecker:
+  - name: Iain Davies
+    ORCID: 0000-0002-5361-6285
+
+summary: >
+  All code to run the neural network models discussed in the paper was 
+  successfully executed. Some results could be read off these models in 
+  action. The code to reproduce the figures given in the paper had more 
+  difficulties, with only some figures successfully recreated.
+repository: https://github.com/codecheckers/Liou-and-Bateman
+check_time: "2020-08-04 10:00:00"
+certificate: 2020-015
+report: https://doi.org/10.5281/zenodo.3978402

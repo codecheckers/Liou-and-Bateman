@@ -33,7 +33,7 @@ T_end = R.Capacity - 1; % simulation end time.
 
 %% Realtime plot setting
 flag_realtime_plot = 1; % whether you want to see simulation result real time or not
-T_plot_cycle = 1000; % How often updating the figures
+T_plot_cycle = 50; % How often updating the figures
 if flag_realtime_plot
     AttachHotKey(O);
     f = plot(O);drawnow;        

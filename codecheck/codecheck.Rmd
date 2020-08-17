@@ -1,0 +1,129 @@
+---
+output:
+  pdf_document:
+    toc: false
+    includes:
+       in_header: codecheck-preamble.sty
+  html_document:
+    self_contained: false
+    toc: true
+    toc_float: false
+---
+
+```{r rsetup,eval=TRUE,include=FALSE}
+require(codecheck)
+require(knitr)
+require(rprojroot)
+require(yaml)
+require(xtable)
+require(tibble)
+require(readr)
+options(width=60)
+opts_chunk$set(cache=FALSE)
+
+root = find_root("codecheck.yml")
+```
+
+```{r codecheck_logo, echo=FALSE,results='asis'}
+latex_codecheck_logo()
+```
+
+```{r manifest, eval=TRUE, include=FALSE}
+metadata = codecheck_metadata(root)
+manifest = metadata$manifest
+
+dest_dir = file.path(root, "codecheck", "outputs")
+## Create the outputs directory if missing
+if ( !dir.exists(dest_dir) ) {
+  dir.create(dest_dir)
+}
+
+manifest_df = copy_manifest_files(root, metadata,
+                                  dest_dir, keep_full_path=FALSE)
+```
+
+---
+title: `r paste("CODECHECK certificate", metadata$certificate)`
+subtitle: `r codecheck:::as_latex_url(metadata$report)`
+---
+
+```{r summary_metadata, echo=FALSE, results='asis'}
+latex_summary_of_metadata(metadata)
+```
+
+```{r summary_manifest, echo=FALSE, results='asis'}
+latex_summary_of_manifest(metadata, manifest_df, root)
+```
+
+
+# Summary
+
+The original authors provided code to run all the neural network models in their Github repository. This was all successfully executed however this code only plotted model variables changing in time and not the figures in the original paper. Prof Liou graciously provided the code to create the actual figures, however much of this could not be run as it relied on his computer pathways. The figures that were able to be recreated matched those in the paper.
+
+# CODECHECKER notes
+
+The original model code was stored at the Github repo here: https://github.com/jyunyouliou/LAS-Model. I cloned this repo from a Linux terminal and opened a MATLAB console. The models corresponding to each experiment were then run by simply executing Exp1, Exp2, etc from the console. These each brought up a realtime plot of four model variables: "$V$", "$phi$", "$Cl_in$" and "$g_k$". For experiments 1, 6 and 7 these were 2D plots, whilst for experiments 2, 4 and 5 these were 1D plots. Snapshots of the models from experiment 1 and 5 are given below in Figure C1 and Figure C2 respectively. 
+
+However, these plots of the models are not the figures given in the paper. Instead, the figures process data from multiple simulations of the models and present the data in accessible formats. Prof Liou very promptly provided us with the code he used to create these figures, which I added to the cloned repository. These are the scripts named Fig1.m, Fig2.m etc. However, none of these could be run to completion since they all depended on other files, schematics or data that he had on his computer in other pathways. Some of the figures were able to be recreated, namely the manuscript figures 1C, 2A, 2B, 2C, 6A, 7A and 7B, which are all recreated in the figures below. These matched the features displayed in the paper.   
+
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\captionsetup[table]{labelformat=addC}
+\captionsetup[figure]{labelformat=addC}
+
+\clearpage
+
+```{r, echo=FALSE, fig.cap=manifest_df[1:6,"comment"]}
+# TODO turn into a loop 
+knitr::include_graphics(manifest_df[1, "dest"])
+cat('\n\n')
+knitr::include_graphics(manifest_df[2, "dest"])
+cat('\n\n')
+knitr::include_graphics(manifest_df[3, "dest"])
+cat('\n\n')
+knitr::include_graphics(manifest_df[4, "dest"])
+cat('\n\n')
+knitr::include_graphics(manifest_df[5, "dest"])
+cat('\n\n')
+knitr::include_graphics(manifest_df[6, "dest"])
+```
+
+\clearpage
+
+
+
+## Acknowledgements
+
+Thanks to Prof Liou for providing code to create the figures. CODECHECK is financially supported by the Mozilla foundation.
+
+
+# Citing this document
+
+```{r, results='asis',echo=FALSE}
+cite_certificate(metadata)
+```
+
+# About CODECHECK
+
+This certificate confirms that the codechecker could independently
+reproduce the results of a computational analysis given the data and
+code from a third party.  A CODECHECK does not check whether the
+original computation analysis is correct.  However, as all materials
+required for the reproduction are freely available by following the
+links in this document, the reader can then study for themselves the
+code and data.
+
+
+# About this document
+
+This document was created using [R Markdown](https://rmarkdown.rstudio.com/) using the [`codecheck`](https://github.com/codecheckers/codecheck) R package.
+`make codecheck.pdf` will regenerate the report file.
+
+```{r}
+sessionInfo()
+```
+
+```{r, include=FALSE, eval=FALSE}
+# render this document in RStudio
+rmarkdown::render("codecheck.Rmd", output_format = "pdf_document") 
+```

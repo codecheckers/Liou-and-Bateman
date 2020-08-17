@@ -36,7 +36,7 @@ T_end = write_cycle*R.Capacity - 1*write_cycle; % simulation end time.
 
 %% Realtime plot setting
 flag_realtime_plot = 1; % whether you want to see simulation result real time or not
-T_plot_cycle = 1000; % How often updating the figures
+T_plot_cycle = 60; % How often updating the figures
 if flag_realtime_plot
     AttachHotKey(O); % So that you can press 'q' to stop the simulation any time
     f = plot(O);drawnow;

@@ -1,4 +1,4 @@
-%% Spiking model - onset LFP pattern depends on inhibitory projection distribution
+Exp5%% Spiking model - onset LFP pattern depends on inhibitory projection distribution
 % This is a spiking model that qualitatively replicate the finding of mean
 % field model.  While changing local inhibition kernel ratio, this can
 % produce forward traveling waves.
