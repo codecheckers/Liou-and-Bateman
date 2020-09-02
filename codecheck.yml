@@ -6,12 +6,11 @@ paper:
     A model for focal seizure onset, propagation, evolution, and progression
   authors:
     - name: Jyun-you Liou
-      ORCID: https://orcid.org/0000-0003-4851-3676
+      ORCID: 0000-0003-4851-3676
     - name: Elliot H Smith
+      ORCID: 0000-0003-4323-4643
     - name: Lisa M Bateman
-  reference: >
-    eLife 2020;9:e50927
-    https://elifesciences.org/articles/50927
+  reference: https://doi.org/10.7554/eLife.50927
 
 manifest:
   - file: codecheck/figures/Fig1_Model.png
